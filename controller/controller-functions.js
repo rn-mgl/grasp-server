@@ -10,9 +10,9 @@ const hashPassword = async (password) => {
 const createJWT = (user_first_name, user_surname, user_gender, user_mail, user_id) => {
   return jwt.sign(
     { user_first_name, user_surname, user_gender, user_mail, user_id },
-    process.env.JWT_SECRET,
+    "RgUkXp2s5v8y/B?E(H+MbQeThVmYq3t6",
     {
-      expiresIn: process.env.JWT_TTL,
+      expiresIn: "30d",
     }
   );
 };
