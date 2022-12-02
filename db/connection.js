@@ -1,9 +1,9 @@
 const mysql = require("mysql2");
 
 const pool = mysql.createPool({
-  host: "sql6.freesqldatabase.com",
-  user: "sql6582394",
-  password: "RyhKtYp7jR",
-  database: "sql6582394",
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
 });
 module.exports = pool.promise();
