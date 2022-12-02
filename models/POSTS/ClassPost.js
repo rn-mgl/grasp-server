@@ -51,7 +51,7 @@ class ClassPost {
 
   static async deletePost(id) {
     try {
-      const sql = `DELETE FROM class_posts WHERE post_id = '${id}' RETURNING *;`;
+      const sql = `DELETE FROM class_posts WHERE post_id = '${id}';`;
       const [data, _] = await db.execute(sql);
       return data;
     } catch (error) {

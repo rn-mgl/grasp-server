@@ -12,7 +12,7 @@ const createTask = async (req, res) => {
     task_file,
     file_name,
   } = req.body;
-
+  console.log(file_name);
   const class_id = req.baseUrl.split("/")[2];
 
   const task = new ActiveTask(
@@ -67,7 +67,8 @@ const getStudentTask = async (req, res) => {
 const updateTask = async (req, res) => {
   const { task_id } = req.params;
 
-  const { task_main_topic, task_text, task_submission_date, task_points, task_file } = req.body;
+  const { task_main_topic, task_text, task_submission_date, task_points, task_file, file_name } =
+    req.body;
 
   const data = await ActiveTask.updateTask(
     task_id,
@@ -75,8 +76,8 @@ const updateTask = async (req, res) => {
     task_text,
     task_submission_date,
     task_points,
-
-    task_file === "" ? null : task_file
+    task_file === "" ? null : task_file,
+    file_name
   );
 
   if (!data) {

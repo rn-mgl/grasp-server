@@ -16,7 +16,7 @@ class ArchivedClass {
 
   static async deleteClass(class_id) {
     try {
-      const sql = `DELETE FROM classes WHERE class_id = '${class_id}' RETURNING *;`;
+      const sql = `DELETE FROM classes WHERE class_id = '${class_id}';`;
       const [data, _] = await db.execute(sql);
       return data;
     } catch (error) {

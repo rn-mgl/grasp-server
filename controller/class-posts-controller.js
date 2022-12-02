@@ -78,7 +78,7 @@ const deletePost = async (req, res) => {
     throw new NotFoundError(`No post with the id ${post_id}`);
   }
 
-  res.status(StatusCodes.OK).json(data[0]);
+  res.status(StatusCodes.OK).json(data);
 };
 
 module.exports = { getAllClassPostAndTaskPost, createPost, deletePost, updatePost, getPost };

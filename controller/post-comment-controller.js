@@ -32,7 +32,7 @@ const updateComment = async (req, res) => {
     comment_text
   );
 
-  if (data.affectedRows === 0) {
+  if (data?.affectedRows === 0) {
     throw new BadRequestError("Please enter proper comments.");
   }
 
@@ -46,7 +46,7 @@ const deleteComment = async (req, res) => {
 
   const data = await PostComments.deleteComment(user_id, comment_id, post_id);
 
-  if (data.affectedRows === 0) {
+  if (data?.affectedRows === 0) {
     throw new NotFoundError(`No comment with id ${comment_id}`);
   }
 

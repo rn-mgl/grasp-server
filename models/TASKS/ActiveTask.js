@@ -62,7 +62,8 @@ class ActiveTask {
     task_text,
     task_submission_date,
     task_points,
-    task_file
+    task_file,
+    file_name
   ) {
     try {
       const sql = `UPDATE assigned_tasks SET ? WHERE task_id = '${task_id}'`;
@@ -72,6 +73,7 @@ class ActiveTask {
         task_submission_date,
         task_points,
         task_file,
+        file_name,
       };
 
       const data = await db.query(sql, post);
@@ -204,7 +206,7 @@ class ActiveTask {
   static async getStudentTask(task_id, user_id, class_id) {
     try {
       const task_sql = `SELECT u.user_name AS assigned_by_name, u.user_surname AS assigned_by_surname, 0 AS is_archived,  
-                        st.student_id, st.class_id, st.student_submitted, st.student_late, st.file_name AS submitted_file_name, st.student_file, at.file_name AS task_file_name, 
+                        st.student_id, st.class_id, st.student_submitted, st.student_late, st.student_file, at.file_name, 
                         DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date, 
                         st.user_id AS assigned_to,
                         at.task_id, st.task_id AS post_id, at.task_main_topic, at.task_text, DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, at.task_points, at.task_open, at.task_file,
@@ -229,7 +231,7 @@ class ActiveTask {
 
   static async removeTask(task_id) {
     try {
-      const sql = `DELETE FROM assigned_tasks WHERE task_id = '${task_id}' RETURNING *;`;
+      const sql = `DELETE FROM assigned_tasks WHERE task_id = '${task_id}';`;
       const [data, _] = await db.execute(sql);
       return data;
     } catch (error) {

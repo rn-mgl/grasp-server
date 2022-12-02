@@ -12,7 +12,7 @@ class ClassFunctions {
 
   static async unenrollClass(user_id, class_id) {
     try {
-      const sql = `DELETE FROM students_class WHERE class_id = '${class_id}' AND user_id = '${user_id}' RETURNING *;`;
+      const sql = `DELETE FROM students_class WHERE class_id = '${class_id}' AND user_id = '${user_id}';`;
       const [data, _] = await db.execute(sql);
       return data;
     } catch (error) {

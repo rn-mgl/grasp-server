@@ -13,7 +13,7 @@ const createAdminPost = async (req, res) => {
     file_name
   );
   const data = await adminPost.createPost();
-  if (data.affectedRows === 0) {
+  if (data?.affectedRows === 0) {
     throw new BadRequestError("You made a wrong post, try again.");
   }
   res.status(StatusCodes.OK).json({ msg: "posted successfully" });
@@ -52,7 +52,7 @@ const updateAdminPost = async (req, res) => {
     file_name
   );
 
-  if (data.affectedRows === 0) {
+  if (data?.affectedRows === 0) {
     throw new BadRequestError("You made an error in your post update request.");
   }
 
@@ -63,11 +63,11 @@ const deleteAdminPost = async (req, res) => {
   const { post_id } = req.params;
   const data = await AdminPost.deletePost(post_id);
 
-  if (data.affectedRows === 0) {
+  if (data?.affectedRows === 0) {
     throw new NotFoundError("No post found with the given id.");
   }
 
-  res.status(StatusCodes.OK).json(data[0]);
+  res.status(StatusCodes.OK).json(data);
 };
 
 module.exports = {

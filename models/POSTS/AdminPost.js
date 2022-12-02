@@ -70,10 +70,10 @@ class AdminPost {
 
   static async deletePost(id) {
     try {
-      const sql = `DELETE FROM admin_posts WHERE post_id ='${id}' RETURNING *`;
-      const data = await db.execute(sql);
+      const sql = `DELETE FROM admin_posts WHERE post_id ='${id}'`;
+      const [data, _] = await db.execute(sql);
 
-      return data[0];
+      return data;
     } catch (error) {
       console.log(error + "-- delete admin post --");
       return;
