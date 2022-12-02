@@ -12,8 +12,8 @@ const cloudinary = require("cloudinary").v2;
 const app = express();
 
 cloudinary.config({
-  cloud_name: "dnzuptxvy"
-  api_key: "614919382952629"
+  cloud_name: "dnzuptxvy",
+  api_key: "614919382952629",
   api_secret: "HVCIzgdN0UUYu3yFUiZmw4dXBLU"
 });
 
