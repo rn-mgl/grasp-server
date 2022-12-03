@@ -41,7 +41,7 @@ class AdminPost {
 
   static async getAllPost() {
     try {
-      const sql = `SELECT DATE_FORMAT(p.post_created, "%m/%d/%Y | %l:%i %p") AS post_created, 
+      const sql = `SELECT post_created, 
         p.post_file, p.file_name, p.post_id, p.post_main_topic, 'post' as post_type,
         p.post_text, u.user_name, u.user_surname, u.user_id AS posted_by, u.user_image
         FROM admin_posts p

@@ -21,7 +21,7 @@ const createAdminPost = async (req, res) => {
 
 const getAllAdminPost = async (req, res) => {
   const data = await AdminPost.getAllPost();
-
+  console.log(data);
   if (!data) {
     throw new NotFoundError("Posts are not available yet, try again later.");
   }
