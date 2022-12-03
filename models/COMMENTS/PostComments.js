@@ -29,7 +29,7 @@ class PostComments {
 
   static async getAllPostComments(class_id) {
     const sql = `SELECT c.post_comment_id AS comment_id, c.post_id, c.comment_from, c.class_id,
-                  DATE_FORMAT(c.post_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created, 
+                  c.post_comment_created AS comment_created, 
                   c.post_comment_text AS comment_text, u.user_name, u.user_surname, u.user_image FROM post_comments c
                   JOIN users u ON c.comment_from = u.user_id 
                   WHERE class_id = '${class_id}'
@@ -40,7 +40,7 @@ class PostComments {
 
   static async getComment(post_id, comment_id, comment_from) {
     const sql = `SELECT c.post_comment_id AS comment_id, c.post_id, c.comment_from, c.class_id, c.post_comment_text AS comment_text, 
-                DATE_FORMAT(c.post_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created,
+                c.post_comment_created AS comment_created, 
                 u.user_name, u.user_surname
                 FROM post_comments c
                 JOIN users u ON c.comment_from = u.user_id

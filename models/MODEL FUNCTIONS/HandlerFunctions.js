@@ -6,9 +6,9 @@ class HandlerFunctions {
   static async getStudentOngoingTasks(class_id, user_id) {
     const sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, 
                         st.student_id, st.class_id, st.student_submitted, st.student_late, st.student_file, 
-                        DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date,
+                        st.student_submission_date AS student_submission_date,
                         at.task_id, at.assigned_by, at.task_main_topic, c.class_handler,
-                        DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                        at.task_submission_date AS task_submission_date, 
                         at.task_points, at.task_open, at.task_file,
                         at.task_created, st.student_task_points
                         FROM students_tasks st
@@ -26,9 +26,9 @@ class HandlerFunctions {
   static async getStudentMissingTasks(class_id, user_id) {
     const sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname,
                         st.student_id, st.class_id, st.student_submitted, st.student_late, st.student_file, 
-                        DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date,
+                        st.student_submission_date AS student_submission_date,
                         at.task_id, at.assigned_by, at.task_main_topic, c.class_handler,
-                        DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                        at.task_submission_date AS task_submission_date, 
                         at.task_points, at.task_open, at.task_file,
                         at.task_created, st.student_task_points
                         FROM students_tasks st
@@ -46,9 +46,9 @@ class HandlerFunctions {
   static async getStudentDoneTasks(class_id, user_id) {
     const sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, 
                         st.student_id, st.class_id, st.student_submitted, st.student_late, st.student_file, 
-                        DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date,
+                        st.student_submission_date AS student_submission_date,
                         at.task_id, at.assigned_by, at.task_main_topic, c.class_handler,
-                        DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                        at.task_submission_date AS task_submission_date, 
                         at.task_points, at.task_open, at.task_file,
                         at.task_created, st.student_task_points
                         FROM students_tasks st

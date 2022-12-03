@@ -52,7 +52,7 @@ class PublicTaskComments {
   static async getAllPublicComments(task_id, class_id) {
     try {
       const sql = `SELECT c.public_comment_id AS comment_id, c.task_id AS post_id, c.comment_from, c.class_id, c.public_comment_text AS comment_text, 
-                   DATE_FORMAT(c.public_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created, 
+                   c.public_comment_created AS comment_created, 
                     u.user_name, u.user_surname, u.user_image FROM public_tasks_comments c
                     JOIN users u ON c.comment_from = u.user_id 
                     WHERE task_id = '${task_id}' 
@@ -69,7 +69,7 @@ class PublicTaskComments {
   static async getPublicComment(class_id, task_id, public_comment_id, comment_from) {
     try {
       const sql = `SELECT c.public_comment_id AS comment_id, c.task_id AS post_id, c.comment_from, c.class_id, c.public_comment_text AS comment_text, 
-                  DATE_FORMAT(c.public_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created, 
+                  c.public_comment_created AS comment_created, 
                   u.user_name, u.user_surname, u.user_image FROM public_tasks_comments c
                   JOIN users u ON c.comment_from = u.user_id 
                   WHERE class_id = '${class_id}' AND task_id = '${task_id}' AND public_comment_id = '${public_comment_id}' AND c.comment_from = '${comment_from}'`;

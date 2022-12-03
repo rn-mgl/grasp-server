@@ -54,7 +54,7 @@ class PrivateTaskComments {
   static async getAllPrivateComments(task_id, class_id, comment_from, comment_to) {
     try {
       const sql = `SELECT c.private_comment_id AS comment_id, c.task_id AS post_id, c.comment_from, c.comment_to, c.class_id, c.private_comment_text AS comment_text, 
-                    DATE_FORMAT(c.private_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created, 
+                    c.private_comment_created AS comment_created, 
                     u.user_name, u.user_surname, u.user_image FROM private_tasks_comments c
                     JOIN users u ON c.comment_from = u.user_id 
                     WHERE c.task_id = '${task_id}' 
@@ -73,7 +73,7 @@ class PrivateTaskComments {
   static async getPrivateComment(class_id, task_id, comment_id, comment_from) {
     try {
       const sql = `SELECT c.private_comment_id AS comment_id, c.task_id AS post_id, c.comment_from, c.comment_to, c.class_id, c.private_comment_text AS comment_text, 
-                  DATE_FORMAT(c.private_comment_created, "%m/%d/%Y | %l:%i %p") AS comment_created, 
+                  c.private_comment_created AS comment_created, 
                   u.user_name, u.user_surname, u.user_image FROM private_tasks_comments c
                   JOIN users u ON c.comment_from = u.user_id 
                   WHERE c.class_id = '${class_id}' 

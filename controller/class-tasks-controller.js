@@ -12,7 +12,7 @@ const createTask = async (req, res) => {
     task_file,
     file_name,
   } = req.body;
-  console.log(file_name);
+
   const class_id = req.baseUrl.split("/")[2];
 
   const task = new ActiveTask(

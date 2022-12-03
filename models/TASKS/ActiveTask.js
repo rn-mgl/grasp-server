@@ -103,8 +103,8 @@ class ActiveTask {
 
       const sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, c.class_handler, 0 AS is_archived,
                   st.student_id, st.class_id, st.student_submitted, st.student_late,
-                  DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date,
-                  at.task_id, at.assigned_by, at.task_main_topic, DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                  st.student_submission_date AS student_submission_date,
+                  at.task_id, at.assigned_by, at.task_main_topic, at.task_submission_date AS task_submission_date, 
                   at.task_points, at.task_created
                   FROM students_tasks st
                   JOIN assigned_tasks at ON at.task_id = st.task_id
@@ -133,7 +133,7 @@ class ActiveTask {
       const ongoing_sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname,
       st.student_id, st.class_id, st.student_submitted, st.student_late, 
       at.task_id, at.assigned_by, at.task_main_topic, 
-      DATE_FORMAT(at.task_submission_date, "%m%d%Y | %l:%i %p") AS task_submission_date, at.task_points, 
+      at.task_submission_date AS task_submission_date, at.task_points, 
       at.task_open, at.task_created
       FROM students_tasks st
       JOIN assigned_tasks at ON at.task_id = st.task_id
@@ -159,7 +159,7 @@ class ActiveTask {
       const missing_sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, 
       st.student_id, st.class_id, st.student_submitted, st.student_late,
       at.task_id, at.assigned_by, at.task_main_topic, 
-      DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+      at.task_submission_date AS task_submission_date, 
       at.task_points, at.task_created
       FROM students_tasks st
       JOIN assigned_tasks at ON at.task_id = st.task_id
@@ -185,7 +185,7 @@ class ActiveTask {
       const done_sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname,
       st.student_id, st.class_id, st.student_submitted, st.student_late,
       at.task_id, st.task_id AS post_id, at.assigned_by, at.task_main_topic, 
-      DATE_FORMAT(at.task_submission_date, "%m%d%Y | %l:%i %p") AS task_submission_date, 
+      at.task_submission_date AS task_submission_date, 
       at.task_points, at.task_created
       FROM students_tasks st
       JOIN assigned_tasks at ON at.task_id = st.task_id
@@ -207,9 +207,9 @@ class ActiveTask {
     try {
       const task_sql = `SELECT u.user_name AS assigned_by_name, u.user_surname AS assigned_by_surname, 0 AS is_archived,  
                         st.student_id, st.class_id, st.student_submitted, st.student_late, st.student_file, at.file_name, 
-                        DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date, 
+                        st.student_submission_date AS student_submission_date, 
                         st.user_id AS assigned_to,
-                        at.task_id, st.task_id AS post_id, at.task_main_topic, at.task_text, DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, at.task_points, at.task_open, at.task_file,
+                        at.task_id, st.task_id AS post_id, at.task_main_topic, at.task_text, at.task_submission_date AS task_submission_date, at.task_points, at.task_open, at.task_file,
                         at.task_created, at.assigned_by, st.student_task_points,
                         c.class_id, c.class_name, c.class_handler, c.class_is_ongoing
                         FROM students_tasks st

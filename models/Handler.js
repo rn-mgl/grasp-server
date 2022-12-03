@@ -18,7 +18,7 @@ class Handler {
 
   static async getHandlerTask(task_id, class_id) {
     try {
-      const task_sql = `SELECT at.task_id, at.task_main_topic, at.task_text, DATE_FORMAT(at.task_submission_date, '%Y-%m-%dT%H:%i') AS task_submission_date, 
+      const task_sql = `SELECT at.task_id, at.task_main_topic, at.task_text, at.task_submission_date AS task_submission_date, 
                           at.task_points, at.task_open, at.task_file, at.task_created, at.assigned_by
                           FROM assigned_tasks at
                           WHERE at.class_id = ${class_id}

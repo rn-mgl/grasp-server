@@ -24,7 +24,7 @@ class Student {
     try {
       const sql = `SELECT u.user_name, u.user_surname, u.user_email, u.user_image, u.user_created, u.user_image,
                         sc.class_id, 
-                        DATE_FORMAT(sc.student_joined, "%m/%d/%Y | %l:%i %p") AS student_joined
+                        sc.student_joined AS student_joined
                         FROM users u 
                         INNER JOIN students_class sc ON sc.user_id = u.user_id
                         WHERE sc.class_id = '${class_id}' AND sc.user_id = '${user_id}' AND u.user_id = '${user_id}'`;

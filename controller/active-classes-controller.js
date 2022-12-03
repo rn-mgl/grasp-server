@@ -18,6 +18,7 @@ const createClass = async (req, res) => {
     class_image,
     file_name
   );
+
   const data = await newClass.createClass();
 
   if (!data) {

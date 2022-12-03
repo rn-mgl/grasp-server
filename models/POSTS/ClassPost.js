@@ -64,7 +64,7 @@ class ClassPost {
     const sql = `SELECT u.user_name, u.user_surname, 'task' as post_type, u.user_image,
                         st.task_id AS post_id, st.class_id, 
                         at.assigned_by AS posted_by, at.task_main_topic AS post_main_topic, at.task_text AS post_text, at.task_file AS post_file, at.file_name,
-                        DATE_FORMAT(at.task_created, "%m/%d/%Y | %l:%i %p") AS post_created
+                        at.task_created AS post_created
                         FROM students_tasks st
                         JOIN assigned_tasks at ON st.task_id = at.task_id
                         JOIN users u ON at.assigned_by = u.user_id
@@ -74,7 +74,7 @@ class ClassPost {
 
                         SELECT u.user_name, u.user_surname, 'post' as post_type, u.user_image,
                         c.post_id, c.class_id, c.posted_by, c.post_main_topic, c.post_text, c.post_file, c.file_name, 
-                        DATE_FORMAT(c.post_created, "%m/%d/%Y | %l:%i %p") AS post_created
+                        c.post_created AS post_created
                         FROM class_posts c 
                         JOIN users u ON c.posted_by = u.user_id
                         WHERE class_id = '${class_id}'
@@ -88,7 +88,7 @@ class ClassPost {
   static async getPost(class_id, post_id, user_id) {
     try {
       const sql = `SELECT u.user_name, u.user_surname, u.user_email, u.user_gender, u.user_image,
-                  c.post_id, c.class_id, c.posted_by, c.post_main_topic, c. post_text, c.post_file, c.file_name, DATE_FORMAT(c.post_created, "%m/%d/%Y | %l:%i %p") AS post_created
+                  c.post_id, c.class_id, c.posted_by, c.post_main_topic, c. post_text, c.post_file, c.file_name, c.post_created AS post_created
                   FROM class_posts c 
                   JOIN users u ON c.posted_by = u.user_id
                   WHERE c.class_id = '${class_id}' AND c.post_id = '${post_id}' AND c.posted_by = '${user_id}'

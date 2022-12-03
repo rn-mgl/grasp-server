@@ -21,7 +21,7 @@ class ArchivedTask {
   static async getAllArchivedTasks(class_id) {
     try {
       const sql = `SELECT teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, c.class_handler, at.class_id, 1 AS is_archived,
-                  at.task_id, at.assigned_by, at.task_main_topic, DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                  at.task_id, at.assigned_by, at.task_main_topic, at.task_submission_date AS task_submission_date, 
                   at.task_points, at.task_created
                   FROM assigned_tasks at
                   JOIN classes c ON c.class_id = at.class_id
@@ -40,7 +40,7 @@ class ArchivedTask {
     try {
       const task_sql = `SELECT u.user_name AS assigned_by_name, u.user_surname AS assigned_by_surname, 1 AS is_archived,  
                         at.task_id, at.task_main_topic, at.task_text, 
-                        DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, 
+                        at.task_submission_date AS task_submission_date, 
                         at.task_points, at.task_open, at.task_file,
                         at.task_created, at.assigned_by,
                         c.class_id, c.class_name, c.class_handler

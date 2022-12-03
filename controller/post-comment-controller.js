@@ -71,7 +71,7 @@ const getComment = async (req, res) => {
   const { user_id } = req.user;
 
   const data = await PostComments.getComment(post_id, comment_id, user_id);
-  console.log(comment_id, post_id);
+
   if (!data) {
     throw new BadRequestError(`Error in getting comment`);
   }

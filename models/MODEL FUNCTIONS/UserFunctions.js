@@ -17,9 +17,9 @@ class UserFunctions {
   static async getAllMyTasks(user_id) {
     const sql = `SELECT c.class_name, c.class_handler,
                         st.student_id, st.class_id, st.task_id, st.student_submitted, st.student_late, st.student_task_points, 
-                        DATE_FORMAT(st.student_submission_date, "%m/%d/%Y | %l:%i %p") AS student_submission_date, 
+                        st.student_submission_date AS student_submission_date, 
                         at.task_main_topic, 
-                        DATE_FORMAT(at.task_submission_date, "%m/%d/%Y | %l:%i %p") AS task_submission_date, u.user_name, u.user_surname
+                        at.task_submission_date AS task_submission_date, u.user_name, u.user_surname
                         FROM students_tasks st
                         JOIN classes c ON st.class_id = c.class_id
                         JOIN assigned_tasks at ON at.task_id = st.task_id
