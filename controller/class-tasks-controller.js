@@ -41,7 +41,7 @@ const getAllClassTasks = async (req, res) => {
   const { user_id } = req.user;
 
   const data = await ActiveTask.getAllClassTasks(class_id, user_id);
-
+  console.log(class_id, user_id);
   if (!data) {
     throw new NotFoundError(`No class with the id ${class_id}`);
   }
