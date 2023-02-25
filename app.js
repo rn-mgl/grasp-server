@@ -82,8 +82,8 @@ app.use(
 app.use("/grasp-by-rltn/file-upload", authenticationMiddleware, fileUploadRouter);
 app.use("/users", authenticationMiddleware, userRouter);
 
-app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
 
 const port = process.env.PORT || 9000;
 
