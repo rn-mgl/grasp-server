@@ -100,7 +100,7 @@ class ActiveTask {
   static async getAllClassTasks(class_id, user_id) {
     try {
       await TaskFunctions.updateClassTasks(user_id);
-      console.log(class_id, user_id);
+
       const sql = `SELECT stud_u.user_id, teach_u.user_name AS assigned_by_name, teach_u.user_surname AS assigned_by_surname, c.class_handler, 0 AS is_archived,
                   st.student_id, st.class_id, st.student_submitted, st.student_late,
                   st.student_submission_date AS student_submission_date,
