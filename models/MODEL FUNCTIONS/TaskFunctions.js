@@ -44,7 +44,7 @@ class TaskFunctions {
   static async updateClassTasks(class_id, user_id) {
     const update_missing = `UPDATE students_tasks st
                               JOIN assigned_tasks at ON st.task_id = at.task_id
-                              SET st.student_late = CASE WHEN at.task_submission_date < CAST(NOW() AS DATE) THEN '1' ELSE '0' END
+                              SET st.student_late = (CASE WHEN at.task_submission_date < CAST(NOW() AS DATE) THEN '1' ELSE '0' END)
                               WHERE st.user_id = '${user_id}' AND st.class_id = '${class_id}'`;
     await db.execute(update_missing);
   }
