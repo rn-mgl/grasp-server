@@ -44,7 +44,7 @@ class TaskFunctions {
   static async updateClassTasks(class_id, user_id) {
     const update_missing = `UPDATE students_tasks st
                               JOIN assigned_tasks at ON st.task_id = at.task_id
-                              SET st.student_late = CASE WHEN CAST(at.task_submission_date AS DATE) < CAST(NOW() AS DATE) THEN "1" ELSE "0" END
+                              SET st.student_late = 1
                               WHERE st.user_id = '${user_id}' AND st.class_id = '${class_id}'`;
     await db.execute(update_missing);
   }
@@ -52,7 +52,7 @@ class TaskFunctions {
   static async updateGlobalTasks(user_id) {
     const update_missing = `UPDATE students_tasks st
                               JOIN assigned_tasks at ON st.task_id = at.task_id
-                              SET st.student_late = CASE WHEN at.task_submission_date < CAST(NOW() AS DATE) THEN '1' ELSE '0' END
+                              SET st.student_late = CASE WHEN at.task_submission_date < CAST(NOW() AS DATE) THEN 1 ELSE 0 END
                               WHERE st.user_id = '${user_id}'`;
     await db.execute(update_missing);
   }
@@ -62,7 +62,7 @@ class TaskFunctions {
                 FROM assigned_tasks a 
                 JOIN students_tasks s 
                 ON a.task_id = s.task_id
-                WHERE s.user_id = '${user_id}' AND a.class_id='${class_id}' AND s.student_submitted = '0' AND a.task_open = '1'
+                WHERE s.user_id = '${user_id}' AND a.class_id='${class_id}' AND s.student_submitted = 0 AND a.task_open = 1
                 ORDER BY a.task_created DESC
                 LIMIT 3`;
     const [data, _] = await db.execute(sql);
