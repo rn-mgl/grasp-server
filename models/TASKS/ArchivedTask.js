@@ -9,7 +9,7 @@ class ArchivedTask {
     try {
       const sql = `UPDATE assigned_tasks SET task_open = '1' 
                   WHERE task_id = '${task_id}'`;
-      // await TaskFunctions.assignTask(task_id);
+      await TaskFunctions.assignTask(task_id);
       const [data, _] = await db.execute(sql);
       return data;
     } catch (error) {
